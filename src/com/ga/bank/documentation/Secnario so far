@@ -1,0 +1,60 @@
+
+update 1 :
+
+Scenario Alice Smith at Bank:
+
+a A BANKER wated to create a new account for Alice with a MASTERCARD TITANIUM CARD
+
+ALICE will start by adding 50000
+
+then a withdraw of 80000
+
+
+DEFINING ROLES AND USER IDENTITY
+
+step1: ROLE from the roles wilL one of the two option which in our case will be customer
+
+
+    USER : defies the the varable id name passwordhash and ROlE role.CUSTOMER
+
+    CUSTOMER : alice = new CUSTOMER()
+    this will have the inhereted varbles from user
+
+
+    FailedLoginAttemps=
+    lockeduntiltimestamp=
+
+ISSUING THE CARD
+step 2:
+
+
+    then the issuing of the car will be as follows
+
+    the CARDTYPE our enum will use the MASTERCARD_TITANIUM
+
+    then to then to the DEBITCARD which will have the card number and card type
+
+
+Step 3: CREATING THE ACCOUNT
+
+ACOUNTSTATUS: this will give you that it is acctive
+
+enum
+TRANSACTABLE: DEPOSTIE WITHDRAW OR TRANSFER
+
+ACCOUNT: this will hold the account id and the status
+
+
+step 4
+EXCUTING THE TRANSACTION
+
+CHEKING ACCOUNT  : this will excute the withdraw
+
+8000 this will cause overdraft
+
+
+
+this is soo far but still some changes needs to be made
+
+
+

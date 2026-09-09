@@ -1,0 +1,33 @@
+
+
+          └── com/
+              └── ga
+                  └── bank/
+                      ├── Main.java
+                      │──Documnetation
+                         ├── model/
+                         ├── user/
+                         │   ├── User.java
+                         │   ├── Customer.java
+                         │   ├── Banker.java
+                         │   └── Role.java
+                         │
+                         ├── account/
+                         │   ├── Transactable.java
+                         │   ├── Account.java
+                         │   ├── CheckingAccount.java
+                         │   ├── SavingsAccount.java
+                         │   └── AccountStatus.java
+                         │
+                         ├── card/
+                         │   ├── CardType.java
+                         │   └── DebitCard.java
+                         │
+                         └── transaction/
+                             ├── Transaction.java
+                             └── TransactionType.java
+
+                      repository/                       this is file handling brige between the txt file and the model lets say
+                      │   │                   │   ├── UserRepository.java
+                      │   │                   │   ├── AccountRepository.java
+                      │   │                   │   └── TransactionRepository.java

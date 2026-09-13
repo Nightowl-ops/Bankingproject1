@@ -12,7 +12,8 @@ public abstract class User {
     // thise is object of role so it will be able to see access the two roles we have which are either banker or customer
 
     protected final Role role ;
-
+    protected int failedLoginAttempts;
+    protected boolean isLocked;
 
 
 
@@ -21,6 +22,8 @@ public abstract class User {
         this.name=name;
         this.passwordHash=passwordHash;
         this.role=role;
+        this.failedLoginAttempts = 0;
+        this.isLocked = false;
 
 
     }
@@ -48,4 +51,31 @@ public abstract class User {
     public String toString(){
         return "user {" + "id = " + id + " ,"+"name"+ name +" "+"role"+ role+" }";
     }
+
+    public int getFailedLoginAttempts() {
+        return failedLoginAttempts;
+    }
+
+    public void setFailedLoginAttempts(int failedLoginAttempts) {
+        this.failedLoginAttempts = failedLoginAttempts;
+    }
+
+    public boolean isLocked() {
+        return isLocked;
+    }
+
+    public void setLocked(boolean locked) {
+        isLocked = locked;
+    }
+
+
+
+
+
+
+
 }
+
+
+
+

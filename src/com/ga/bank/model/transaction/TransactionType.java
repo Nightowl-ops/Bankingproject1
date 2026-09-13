@@ -4,7 +4,9 @@ public enum TransactionType {
 
 
 
-
+DEPOSITE,
+    WITHDRAW,TRAHSFER_OWN,
+    TRANSFER_OTHER
 
 
 }

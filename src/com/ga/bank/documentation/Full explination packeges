@@ -1,0 +1,175 @@
+
+
+
+BANKING PROJECT EXPLINATION OF PACKEGES
+
+
+CARD PACKEGE:
+
+File one CARDTYPE Enums: This file is used to declare the three types of cards we have the MASTER_PLATINUM,MASTER_TITANIUM,MASTER_STANDARD
+
+with vriable of the this class being the limits that was set from the proect instructions
+
+these varable are the paramters for our card setting the limits according to the action being taken
+
+dailywithdrawlimit
+dailytransferlimit
+dailytransferownlimit
+dailydepositownlimit
+dailydepositlimit
+
+a constructor is made with those limit and then we use the shortcut for creating an object in the enum class and passing the limits of each card
+you can see the example in 1.0 referece in the cardtype
+
+and then we do the get for the each one of them so that we can call the cardtype and its limits accrodingly using the getter ;
+reference : 1.1
+
+in summary the card packege is used to get the cardtype setting them accordingly and we can also from this class add new card type without changing everthing in our code keep it seperate from other for future updates
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+File Two DEBITCARD: this file will use an varable object to pass and object of cardtpye when created into the constructor of debitcard why didnt we inherete because is the card type is a type of card not the actual card
+in this file we have the following consist of CARDNUMBER AND OBJECT CARDTYPE basically this card will be given a number and this number will be given to the cardtype choosen from the user when creating a new account will be more clear when we go throught the other packges
+
+also the getter will be used to be called in other classes the connection will click evetually
+
+in summary this class will set the cardnumber to the card type choosen
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+TRANSACTION PACKEGE
+
+File one TRANSACTION : this file will be used to keep track of the what type of transaction happened and the account target and source account amount and  when did this transaction happen exactly
+
+we have two constructors which will have the following
+
+transactionId
+sourceAccountId
+targetAccountId
+TransactionType type in here we are calling an object from the transaction type class to use to delcare what is this type of transation
+amount
+postBalance
+timestamp
+
+i also imported LocalDateTime and UUID will explain futher down
+
+the first constructor will be used to create a new constuctor
+the second will be used to recostruct a old record form the txt fill you see this implmentation in other packges
+
+
+and for each varbale we have a get method to be used by other files
+
+in summary : this file is our record of what has happened
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+File two Enums : this file will be used to delcare the set types of transaction
+
+is this transaction a DEPOSITE,WITHDRAW,TRAHSFER_OWN,TRANSFER_OTHER
+
+this is used for us not be bothered will dealing in verifiying the input is it uppercase sesitive or lower case
+and in the future if we want to delcare a new type of transfer we can just add to here and add a mehtod
+maybe not as simple and what i just explained but it will be easier than dealing without enums
+
+also we have getter methods to be used when needed by other class
+and the LocalDateTime is a library which is used to get the exact time of when the transaction happens
+
+UUID is used to create a random stiring for the id of the transaction
+
+in summary : this file is for what is the type of transaction to be used by transaction file called as a object
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+ACCOUNT PACKEGE:
+
+TRANSACTABLE FILE: this class is set as an interface it is used to set methods that will have to be declared in any class that will implment this class whats the use of this it is to get a place were we can set the rule for every file that inheret this
+
+three methods are there the DEPOSITE the WITHDRAW and the TRANSFER
+
+these will be used in the checking and saving account files and the account
+
+question: why did the account class is abstract and why didnt we implment the withdraw will see it later in the explanation of other files
+
+in summary : this is used to set a rules that any file that implments it has to follow
+and bed there parameters
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+ACCOUNTSTATUS FILE: this consists of three things what is the account current status is it
+
+ACTIVE DEACTIVATED,LOCKED
+
+this is better than dealing with checking the correct input and seeing and setting .upper or lowerclass
+
+in summary :this class is used to set the values that are going to determine is this class active or not
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+ACCOUNT File : this class will firstly import the card packege debitcard file
+
+for what you say so that we can pass the object card as a varbale in the paramter of the account constructor
+
+we made the class abstract why you ask to do the following this account file is to be our base for our account type to extend there
+
+think of it do we have to write the same exact varable that is shared between each account type we can pass the commons between them as class this will make the code less and wont cause up problem down the line
+and when calling the object will polymorphism it . youll see in the explnation of the main
+
+this class has the following :
+
+accountid
+
+balence
+
+DebitCard debtcard // this is the varbale called from the import of the class creditcard
+so we can pass in the account object a creditcard that has been created for this user
+
+AccountStatus status
+
+
+these are the common varbale that will be in each account type created
+id and balence and debt card and its status.
+
+we created a constructor with the paramter being each of the varbales present
+and setting in these the accountstatus to be active form the being why because this is when creating a new account of course the account status will be active
+it wont be deactivated
+
+
+THEN methods
+
+we implemented the transactble file so we have to create the methods that were promised
+
+deposite  it will check the amount valibaltion
+
+
+transfer will have the parmater of Target account with the varbale type to be Account so we can pass that account to be sent to which will be account id correct
+
+checking the validation for it if true withdraw from my account to the target
+
+WAIT were is the withdraw?
+think of it the checking and saving both have a withdraw methods buy each have a different way of implmenting it so whats the solution is the following
+we make the class ACCOUNT TO be abstract so we dont create it yet will create those two methods in the chekcing and saving account with the super to pass the value from there to the ACCOUNT file
+
+we have getter for each of the varable and for the status we have a setter youll ask why becuase
+what will happen when this account is not active it get overdraft or locked how will change the status using this methods
+
+
+in summary : this class is used to set the varbale common between each of the class type to not rewrite code again and delacre common varbale when passed to ather account type
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+CHECKING ACCOUNT: in this account will implment the
+
+
+
+
+
+
+
+
+

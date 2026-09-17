@@ -10,16 +10,31 @@ public class Transaction {
     private final String targetAccountId;
     private final TransactionType type;
     private final double amount;
+    private final double postBalance;
     private final LocalDateTime timestamp;
 
-    public Transaction(String sourceAccountId, String targetAccountId, TransactionType type, double amount) {
+    // Constructor for creating brand new transactions in memory
+    public Transaction(String sourceAccountId, String targetAccountId, TransactionType type, double amount, double postBalance) {
         this.transactionId = UUID.randomUUID().toString();
         this.sourceAccountId = sourceAccountId;
         this.targetAccountId = targetAccountId;
         this.type = type;
         this.amount = amount;
+        this.postBalance = postBalance;
         this.timestamp = LocalDateTime.now();
     }
+
+    // Overloaded constructor for rebuilding stored transactions from file
+    public Transaction(String sourceAccountId, String targetAccountId, TransactionType type, double amount, double postBalance, String transactionId, LocalDateTime timestamp) {
+        this.sourceAccountId = sourceAccountId;
+        this.targetAccountId = targetAccountId;
+        this.type = type;
+        this.amount = amount;
+        this.postBalance = postBalance;
+        this.transactionId = transactionId;
+        this.timestamp = timestamp;
+    }
+
 
     public TransactionType getType() {
         return type;
@@ -45,6 +60,10 @@ public class Transaction {
         return amount;
     }
 
+    public double getPostBalance() {
+        return postBalance;
+    }
+
     @Override
     public String toString() {
         return "Transaction{" +
@@ -53,6 +72,7 @@ public class Transaction {
                 ", target='" + (targetAccountId != null ? targetAccountId : "N/A") + '\'' +
                 ", type=" + type +
                 ", amount=" + amount +
+                ", postBalance=" + postBalance +
                 ", time=" + timestamp +
                 '}';
     }

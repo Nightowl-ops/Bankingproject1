@@ -2,6 +2,7 @@ package com.ga.bank.model.card;
 
 public enum CardType {
 
+    /// 1.0;
     // these are the object for the constructor class
     MASTER_PLATINUM(20000.0, 40000.0, 80000.0, 100000.0, 200000.0),
     MASTER_TITANIUM(10000.0, 20000.0, 40000.0, 100000.0, 200000.0),
@@ -25,7 +26,7 @@ private final double dailydepositlimit;
 
 
     }
-
+/// 1.1
     public double getDailywithdrawlimit() {
         return dailywithdrawlimit;
     }

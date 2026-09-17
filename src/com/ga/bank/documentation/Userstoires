@@ -1,0 +1,55 @@
+User story one: Enforcing daily card transaction ceilings
+
+As an account holder I want the banking system to stop withdrawals or transfers that exceed my debit card tier limits
+So that my funds remain protected against fraud and accidental overdrafts beyond my daily allowance.
+
+acceptance criteria:
+
+GIVEN that a customer holds an active account with a standard or tiered debit card
+WHEN they attempt to withdraw an amount where the new amount
+plus today's previous withdrawals exceeds the card tier's daily withdrawal limit
+THEN the transaction is declined immediately and an error message
+ displays stating the daily limit and amount already used today.
+
+GIVEN that a customer initiates an internal transfer
+between their own accounts
+WHEN the requested transfer amount plus previous own-transfers
+ is within the card's specific own-transfer ceiling
+THEN the system approves the transaction, updates both account
+ balances, and logs the operation.
+
+GIVEN that a customer has reached their daily
+ card transfer limit to external accounts
+WHEN they attempt to initiate another transfer
+to a third-party account on the same day
+THEN the system blocks the request and prevents
+funds from being deducted from the source account.
+
+
+
+User story two: Automatic checking account overdraft fee and penalty lockout
+
+As a banker I want checking accounts to automatically assess
+ fees on negative balances and deactivate when hitting the overdraft limit
+So that the bank mitigates credit risk while enforcing compliance rules systematically.
+
+acceptance criteria:
+
+GIVEN that a checking account has a positive balance but insufficient funds for
+a requested withdrawal within the overdraft cap
+WHEN the withdrawal executes
+THEN the account balance becomes negative, the
+ overdraft counter increases by one, and a fixed overdraft fee is deducted.
+
+GIVEN that a checking account incurs its maximum allowed
+ consecutive overdraft penalty
+WHEN the threshold is reached
+THEN the account status changes to DEACTIVATED
+and all subsequent withdrawal requests are blocked.
+
+GIVEN that a checking account is currently deactivated
+ due to a negative balance
+WHEN a deposit is processed that brings the account
+balance back to zero or higher
+THEN the system automatically reactivates the account
+ to ACTIVE status and allows normal transactions to resume.

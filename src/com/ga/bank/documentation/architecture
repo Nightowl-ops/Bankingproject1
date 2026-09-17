@@ -1,33 +1,54 @@
-
-
-          └── com/
-              └── ga
-                  └── bank/
-                      ├── Main.java
-                      │──Documnetation
-                         ├── model/
-                         ├── user/
-                         │   ├── User.java
-                         │   ├── Customer.java
-                         │   ├── Banker.java
-                         │   └── Role.java
-                         │
-                         ├── account/
-                         │   ├── Transactable.java
-                         │   ├── Account.java
-                         │   ├── CheckingAccount.java
-                         │   ├── SavingsAccount.java
-                         │   └── AccountStatus.java
-                         │
-                         ├── card/
-                         │   ├── CardType.java
-                         │   └── DebitCard.java
-                         │
-                         └── transaction/
-                             ├── Transaction.java
-                             └── TransactionType.java
-
-                      repository/                       this is file handling brige between the txt file and the model lets say
-                      │   │                   │   ├── UserRepository.java
-                      │   │                   │   ├── AccountRepository.java
-                      │   │                   │   └── TransactionRepository.java
+└── com/
+└── ga/
+└── bank/
+├── Main.java
+│
+├── documentation/
+│   ├── architecture
+│   ├── Full explination packeges
+│   ├── plan to do long version
+│   ├── Secnario so far
+│   ├── Simple explination
+│   └── Summary of the packges
+│
+├── model/
+│   ├── user/
+│   │   ├── User.java
+│   │   ├── Customer.java
+│   │   ├── Banker.java
+│   │   └── Role.java
+│   │
+│   ├── account/
+│   │   ├── Transactable.java
+│   │   ├── Account.java
+│   │   ├── ChekingAccount.java
+│   │   ├── SavingAccount.java
+│   │   └── AccountStatus.java
+│   │
+│   ├── card/
+│   │   ├── CardType.java
+│   │   └── DebitCard.java
+│   │
+│   └── transaction/
+│       ├── Transaction.java
+│       └── TransactionType.java
+│
+├── repository/
+│   ├── UserRepository.java
+│   ├── AccountRepository.java
+│   ├── TransactionRepository.java
+│   ├── FileUserRepository.java
+│   ├── FileAccountRepository.java
+│   └── FileTransactionRepository.java
+│
+├── service/
+│   ├── AuthService.java
+│   ├── TransactionService.java
+│   └── BankerService.java
+│
+├── util/
+│   └── FileStorageUtils.java
+        passwordutils.java
+│
+└── junittest/
+└── FileAccountRepositoryTest.java

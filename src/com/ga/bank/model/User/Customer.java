@@ -1,56 +1,62 @@
 package com.ga.bank.model.User;
 
-public class Customer extends User{
-    private int failedloginattempts;
-    private long lovkeduntiltimestamp;
+public class Customer extends User {
 
-// this is the constructor when creating a new user
+    private long lockedUntilTimestamp;
 
-    public Customer(String id, String name, String passwordHash){
-        super(id,name,passwordHash,Role.CUSTOMER);
-        this.failedloginattempts=0;
-        this.lovkeduntiltimestamp=0L;
-    }
-    // this is the constructor to deal with an already existing account
-
-    public Customer(String id, String name, String passwordHash, int lovkeduntiltimestamp, long lockedUntilTimestamp) {
+    // Constructor for creating a brand-new Customer
+    public Customer(String id, String name, String passwordHash) {
         super(id, name, passwordHash, Role.CUSTOMER);
-        this.failedloginattempts = failedloginattempts;
-        this.lovkeduntiltimestamp = lovkeduntiltimestamp;
+        this.lockedUntilTimestamp = 0L;
     }
 
-    public int getFailedloginattempts() {
-        return failedloginattempts;
+    // Constructor for restoring an existing Customer from file storage
+    public Customer(String id, String name, String passwordHash, int failedLoginAttempts, boolean isLocked, long lockedUntilTimestamp) {
+        super(id, name, passwordHash, Role.CUSTOMER);
+        this.failedLoginAttempts = failedLoginAttempts;
+        this.isLocked = isLocked;
+        this.lockedUntilTimestamp = lockedUntilTimestamp;
     }
 
-    public void setFailedloginattempts(int failedloginattempts) {
-        this.failedloginattempts = failedloginattempts;
-    }
-
-    public void incramentfaliedattemts(){
-        this.failedloginattempts++;
-    }
-    public void resetfailedattempts(){
-        this.failedloginattempts=0;
-    }
-
-    public long getLovkeduntiltimestamp() {
-        return lovkeduntiltimestamp;
-    }
-
-    public void setLovkeduntiltimestamp(long lovkeduntiltimestamp) {
-        this.lovkeduntiltimestamp = lovkeduntiltimestamp;
-    }
-// this is unix epoch time this is the time millisecond that have elapsed since january 1 1970
-    //when you call it will return a huge number aprroximalty 1788984708000
-    //
-    public boolean isLocked() {
-        return System.currentTimeMillis() < this.lovkeduntiltimestamp;
-    }
     @Override
-    public String toString(){
-        return  "customer {"+"id =" +id + ", name " +name+ " ,role"+role+" , failedloginattemps ="+ failedloginattempts + " , lockeduntiltimestamp "+ lovkeduntiltimestamp+ "} ";
+    public boolean isLocked() {
+        if (this.lockedUntilTimestamp > 0L) {
+            // Still within lockout window
+            if (System.currentTimeMillis() < this.lockedUntilTimestamp) {
+                return true;
+            }
+            // Timer expired: auto-reset
+            this.lockedUntilTimestamp = 0L;
+            this.isLocked = false;
+            this.failedLoginAttempts = 0;
+            return false;
+        }
+        return this.isLocked;
     }
 
-}
 
+    public void lockForDuration(long durationMillis) {
+        this.isLocked = true;
+        this.lockedUntilTimestamp = System.currentTimeMillis() + durationMillis;
+    }
+
+    public long getLockedUntilTimestamp() {
+        return lockedUntilTimestamp;
+    }
+
+    public void setLockedUntilTimestamp(long lockedUntilTimestamp) {
+        this.lockedUntilTimestamp = lockedUntilTimestamp;
+    }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", role=" + role +
+                ", failedLoginAttempts=" + failedLoginAttempts +
+                ", isLocked=" + this.isLocked + // Read the field directly to prevent side effects during logging
+                ", lockedUntilTimestamp=" + lockedUntilTimestamp +
+                '}';
+    }
+}
